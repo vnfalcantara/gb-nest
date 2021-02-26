@@ -121,7 +121,6 @@ describe('User', () => {
                 .expect(200)
 
             expect(body.length).toBe(2)
-            expect(body[0]._id.toString()).toBe(findAll[0]._id.toString())
         })
 
         it('should return one document', async () => {

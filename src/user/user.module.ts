@@ -24,17 +24,20 @@ export class UserModule {
   }
 
   async bootStrap() {
-    const email = 'user@email.com'
-    const user = await this.userService.findOne({email})
+    let email = 'user@email.com'
+    let user
 
-    if (!user) {
-      await this.userService.create({
-        email,
-        name: 'Novo Usuario',
-        password: '123456',
-        cpf: '99999999999'
-      })
-    }
+    if (process.env.NODE_ENV !== 'test') {
+      user = await this.userService.findOne({email})
+
+      if (!user) {
+        await this.userService.create({
+          email,
+          name: 'Novo Usuario',
+          password: '123456',
+          cpf: '99999999999'
+        })  
+    }}
   }
 
 }
