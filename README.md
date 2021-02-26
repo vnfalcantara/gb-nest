@@ -11,31 +11,28 @@
 
 <br>
 
-## Instalção
+## Instalação
 ```bash
-$ npm install
+$ yarn install
 ```
 
 ## Scripts
 ```bash
-# dev
-$ npm run start
-
 # watch mode
-$ npm run start:local
+$ yarn start:local
 ```
 
 ## Testes
 
 ```bash
 # Testes unitários
-$ npm run test
+$ yarn test
 
 # Cobertura de testes
-$ npm run test:cov
+$ yarn test:cov
 
 # Testes de integração
-$ npm run test:e2e
+$ yarn test:e2e
 ```
 
 # Endpoints
