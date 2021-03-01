@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Query, Put, Param, Delete, UsePipes, ValidationPipe, UseFilters, InternalServerErrorException, UseGuards, Request, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, Put, Param, Delete, UsePipes, ValidationPipe, UseFilters, InternalServerErrorException, UseGuards, Request, BadRequestException, UnauthorizedException } from '@nestjs/common';
 import { RequestQuery } from '../common/dto/request-query.dto';
 import { HttpExceptionFilter } from '../http-exception.filters';
 import { PurchaseBody, PurchaseUpdate } from './dto/purchase.dto';
@@ -32,7 +32,7 @@ export class PurchaseController {
         }
 
         if (!user)
-            throw new BadRequestException();
+            throw new UnauthorizedException();
 
         this.purchaseQueue.add('PURCHASE_VALIDATION', {
             ...body,

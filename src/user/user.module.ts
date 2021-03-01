@@ -35,7 +35,7 @@ export class UserModule {
           email,
           name: 'Novo Usuario',
           password: '123456',
-          cpf: '99999999999'
+          cpf: '15350946056'
         })  
     }}
   }

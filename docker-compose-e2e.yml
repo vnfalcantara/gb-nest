@@ -1,19 +1,14 @@
-version: '3'
+version: '3.7'
 
 services:
 
-  app:
-    build:
-      dockerfile: Dockerfile
-      context: .
-    depends_on: 
-      - mongodb
-      - redis
+  test-e2e:
+    image: node:14-alpine
     environment: 
-      NODE_ENV: local
+      NODE_ENV: test
       APP_PORT: 3000
       APP_SECRET: shhh
-      MONGO_URI: mongodb://mongodb:27017/boticario
+      MONGO_URI: mongodb://mongodb:27017/boticario_test
       MONGO_RETRY_ATTEMPTS: 3
       MONGO_RETRY_DELAY: 2500
       MONGO_CONNECTION_NAME: macmini
@@ -21,8 +16,13 @@ services:
       REDIS_PORT: 6379
       BOTICARIO_HOST: https://mdaqk8ek5j.execute-api.us-east-1.amazonaws.com/v1
       BOTICARIO_TOKEN: ZXPURQOARHiMc6Y0flhRC1LVlZQVFRnm
-    ports:
-      - "3000:3000"
+    depends_on: 
+      - mongodb
+      - redis
+    command: >
+      /bin/sh -c "
+        yarn test:e2e test/purchase.e2e-spec.ts
+      "
 
   mongodb:
     image: mongo:4.2

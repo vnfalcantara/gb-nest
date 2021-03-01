@@ -1,11 +1,16 @@
 ## Considerações
 * Aplicação construida utilizando o NestJS
 * Arquivos ".env" não estão no .gitignore por questões de praticidade
-* A aplicação depende do MongoDB e do Redis instalados
 
 <br>
 
-## Usurio Default
+## Dependencias
+* MongoDB
+* Redis
+
+<br>
+
+## Usuráio Default
 * user: user@email.com
 * pass: 123456
 
@@ -18,24 +23,32 @@ $ yarn install
 
 ## Scripts
 ```bash
-# watch mode
+# watch
 $ yarn start:local
+
+# Ambiente completo
+$ docker-compose up
 ```
 
 ## Testes
 
 ```bash
-# Testes unitários
+# Unitários
 $ yarn test
 
-# Cobertura de testes
+# Cobertura | coverage/lcov-report/index.html
 $ yarn test:cov
 
-# Testes de integração
+# Integração
 $ yarn test:e2e
 ```
 
 # Endpoints
+## Swagger
+* http://localhost:3000/api
+
+<br>
+
 ## Auth
 method  | path | headers | body
 ------------- | ------------- | ------------- | -------------
@@ -83,10 +96,8 @@ DELETE  | /purchase/:id | { Authorization: 'Bearer \<jwt-token\>' } | -
 ## PurchaseBodyDto
 ```javascript
 {
-  "code": 'Foolano da Silva',
-  "price": '11111111111',
-  "status": 'foolano@email.com',
-  "user": '123456',
+  "code": 'abc123',
+  "price": 999
 }
 ```
 

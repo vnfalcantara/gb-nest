@@ -17,6 +17,8 @@ import { UserService } from "../src/user/user.service";
 import { UserModule } from "../src/user/user.module";
 import { SetupModule } from "../src/setup/setup.module";
 import { SetupService } from "../src/setup/setup.service";
+import { BullModule } from "@nestjs/bull";
+import { QueueConfig } from "../src/config/queue.config";
 
 // import { environmentSchema } from '../environment/environmentSchema';
 
@@ -71,6 +73,11 @@ describe('Purchase', () => {
                 MongooseModule.forRootAsync({
                     imports: [ConfigModule],
                     useClass: DatabaseConfig
+                }),
+
+                BullModule.forRootAsync({
+                    imports: [ConfigModule],
+                    useClass: QueueConfig
                 }),
 
                 PurchaseModule,
@@ -314,7 +321,7 @@ describe('Purchase', () => {
             expect(body.nModified).toBe(1)
             expect(newCount).toBe(count - 1)
         })
-        
+
         it('should be unauthorized', async () => {
             const { body } = await request(app.getHttpServer())
                 .delete('/purchase/111111111111111111111111')
