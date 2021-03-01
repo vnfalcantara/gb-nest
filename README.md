@@ -10,7 +10,7 @@
 
 <br>
 
-## Usuráio Default
+## Usuário Default
 * user: user@email.com
 * pass: 123456
 
